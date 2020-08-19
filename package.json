@@ -1,0 +1,59 @@
+{
+  "name": "js-string-to-value",
+  "version": "1.0.0",
+  "description": "Typed Parsing of string representation of a js value, if you absolutely must",
+  "main": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "eslint \"src/**/*\" --ext .js,.jsx,.ts,.tsx",
+    "build": "tsc",
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn run test && yarn run lint",
+    "preversion": "yarn run lint",
+    "version": "yarn run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoroshikun/js-string-to-value.git"
+  },
+  "keywords": [],
+  "author": "Drew Hutton <drew.hutton@pm.me>",
+  "bugs": {
+    "url": "https://github.com/yoroshikun/js-string-to-value/issues"
+  },
+  "homepage": "https://github.com/yoroshikun/js-string-to-value#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "eslint": "^7.7.0",
+    "jest": "^26.4.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.2.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {},
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ]
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "semi": true,
+    "singleQuote": true
+  }
+}
