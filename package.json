@@ -1,6 +1,6 @@
 {
   "name": "js-string-to-value",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Typed Parsing of string representation of a js value, if you absolutely must",
   "main": "./dist/index.js",
   "source": "./src/index.ts",
@@ -11,13 +11,13 @@
   ],
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*\" --ext .js,.jsx,.ts,.tsx",
     "build": "tsc",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn run test && yarn run lint",
     "preversion": "yarn run lint",
-    "version": "yarn run format && git add -A src",
+    "version": "yarn run format && git add .",
     "postversion": "git push && git push --tags"
   },
   "repository": {

@@ -1,7 +1,6 @@
-import { isObject } from "./utils/validators";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare let value: any;
+import { guessValueType, validateValueType } from './utils/validators';
+import { getValue } from './utils/getValue';
+import { ValueType } from './types';
 
 /**
  * Parse JsValue string to actual JsValue
@@ -11,12 +10,24 @@ declare let value: any;
  *
  * @returns <T> Parsed Object
  */
-export const parseJs = <T>(jsString: string): T => {
-  if (!isObject(jsString)) {
-    throw new Error("String is not an valid value");
+export const parseJs = <T>(jsString: string, type?: ValueType): T => {
+  if (type) {
+    if (!validateValueType(jsString, type)) {
+      throw new Error(
+        'Given type does not seem to match validated type, please pass the correct type or use unsafeParseJs',
+      );
+    }
   }
 
-  new Function(`value = ${jsString}`)();
+  const valueType = type || guessValueType(jsString);
+
+  if (valueType === 'unknown') {
+    throw new Error(
+      'The ValueType could not be guessed or validated, and or is not given, please double check the jsString or use unsafeParseJs',
+    );
+  }
+
+  const value = getValue(jsString, valueType);
 
   return value;
 };
@@ -29,8 +40,10 @@ export const parseJs = <T>(jsString: string): T => {
  *
  * @returns <T> Parsed Object
  */
-export const unsafeParseJs = <T>(jsString: string): T => {
-  new Function(`value = ${jsString}`)();
+export const unsafeParseJs = <T>(jsString: string, type?: ValueType): T => {
+  const valueType = type || guessValueType(jsString);
+
+  const value = getValue(jsString, valueType);
 
   return value;
 };
@@ -42,8 +55,10 @@ export const unsafeParseJs = <T>(jsString: string): T => {
  *
  * @returns Stringified JSON
  */
-export const unsafejson = (jsString: string): string => {
-  new Function(`value = ${jsString}`)();
+export const unsafeJSON = (jsString: string, type?: ValueType): string => {
+  const valueType = type || guessValueType(jsString);
+
+  const value = getValue(jsString, valueType);
 
   return JSON.stringify(value);
 };
