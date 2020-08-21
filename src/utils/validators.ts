@@ -135,6 +135,7 @@ export const validateValueType = (
   if (type === 'boolean') return isBoolean(jsString);
   if (type === 'undefined') return isUndefined(jsString);
   if (type === 'null') return isNull(jsString);
+  if (type === 'string') return isString(jsString);
   if (type === 'number') return isNumber(jsString);
   if (type === 'function') return isFunction(jsString);
 

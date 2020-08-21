@@ -24,7 +24,7 @@ export const getValue = (jsString: string, type: ValueType): any => {
   }
 
   if (type === 'string') {
-    return jsString.slice(1, jsString.length - 2);
+    return jsString.slice(1, jsString.length - 1);
   }
 
   if (type === 'number') {
