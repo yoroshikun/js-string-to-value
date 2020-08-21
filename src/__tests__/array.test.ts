@@ -5,9 +5,7 @@ test('Array Guess', () => {
 });
 
 test('Array Type Given', () => {
-  expect(parseJs<string[]>("['hello','world']", 'array')[1]).toBe(
-    'world',
-  );
+  expect(parseJs<string[]>("['hello','world']", 'array')[1]).toBe('world');
 });
 
 test('Array Incorrect Type Given', () => {
@@ -17,25 +15,21 @@ test('Array Incorrect Type Given', () => {
 });
 
 test('Array Incorrect Type Given Unsafe', () => {
-  expect(unsafeParseJs<string[]>("['hello','world']", 'null')).toBe(
-    null,
-  );
+  expect(unsafeParseJs<string[]>("['hello','world']", 'null')).toBe(null);
 });
 
 test('Array Type Given Unsafe', () => {
-  expect(
-    unsafeParseJs<string[]>("['hello','world']", 'array')[1],
-  ).toBe('world');
-});
-
-test('Array Guess Unsafe', () => {
-  expect(unsafeParseJs<string[]>("['hello','world']")[1]).toBe(
+  expect(unsafeParseJs<string[]>("['hello','world']", 'array')[1]).toBe(
     'world',
   );
 });
 
+test('Array Guess Unsafe', () => {
+  expect(unsafeParseJs<string[]>("['hello','world']")[1]).toBe('world');
+});
+
 test('Array to JSON', () => {
   expect(unsafeJSON("['hello','world']")).toBe(
-    JSON.stringify(['hello','world']),
+    JSON.stringify(['hello', 'world']),
   );
 });
